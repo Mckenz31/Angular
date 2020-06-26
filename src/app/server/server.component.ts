@@ -6,5 +6,7 @@ import {Component} from '@angular/core';
 })
 
 export class ServerComponent{
+  month = "November";
+  date = 10;
 
 }

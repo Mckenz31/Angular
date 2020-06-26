@@ -1,2 +1,14 @@
+<Label>Data Binding</Label>
+<hr>
+<input type = "text" (input) = "onListenTo($event)">
+<h5>{{enteredText}}</h5>
+<hr>
+<input type="text" [(ngModel)] = "serverID">
+<hr>
+<Button class = "btn btn-primary"   (click) = "onClickduh()" [disabled] = "!whoknows">Click me </Button>
+<!-- <p>{{whoknows}}</p> -->
+<p [innerText] = "randomText"></p>
+<!-- <p>{{randomText}}</p> -->
+
 <app-server></app-server>
-<app-server></app-server>
+
