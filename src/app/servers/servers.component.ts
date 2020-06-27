@@ -9,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServersComponent implements OnInit {
 
+<<<<<<< Updated upstream
   constructor() { }
+=======
+
+  marvelID = "";
+
+  constructor() {
+
+  }
+>>>>>>> Stashed changes
 
   ngOnInit(): void {
   }
 
+<<<<<<< Updated upstream
+=======
+
+
+
+>>>>>>> Stashed changes
 }
