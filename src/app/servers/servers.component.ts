@@ -13,11 +13,16 @@ export class ServersComponent implements OnInit {
   randomText = "Server is not created";
   serverID = "";
   enteredText = "";
+  condition = false;
+  serverIds = [''];
 
   constructor() {
     setTimeout(()=> {
       this.whoknows = true;
     }, 2000)
+
+
+
   }
 
   ngOnInit(): void {
@@ -34,6 +39,9 @@ export class ServersComponent implements OnInit {
   }
 
   onClickduh(){
-    this.randomText = "Server was successfully created in the name:" + this.serverID
+    this.randomText = "Server name:" + this.serverID;
+    this.serverIds.push(this.enteredText);
+    this.condition = true;
   }
+
 }

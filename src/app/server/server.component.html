@@ -1,4 +1,9 @@
-<!-- String Interpolation -->
-<p>College will reopen in the month of {{month}} on {{date}}</p>
+<!--String Interpolation -->
+<p [ngStyle] = "{backgroundColor: getDecide()}" [ngClass] = "{anyclassname: serverID2 === 'online'}"
+>Server state is {{serverID2}} </p>
+
+<!-- Look at the minor difference, first one uses camelCase, second one has its style name in ''
+<p [ngStyle] = "{'background-color': getDecide()}">Server state is {{serverID2}}</p> -->
+
 
 

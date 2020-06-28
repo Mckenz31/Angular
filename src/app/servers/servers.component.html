@@ -5,10 +5,18 @@
 <hr>
 <input type="text" [(ngModel)] = "serverID">
 <hr>
-<Button class = "btn btn-primary"   (click) = "onClickduh()" [disabled] = "!whoknows">Click me </Button>
+<Button class = "btn btn-primary"   (click) = "onClickduh()" [disabled] = "!whoknows" >Click me </Button>
 <!-- <p>{{whoknows}}</p> -->
+<p *ngIf = "condition; else locvar">Server is created</p>
+<ng-template #locvar>
+  <p> Server is not yet created</p>
+</ng-template>
 <p [innerText] = "randomText"></p>
 <!-- <p>{{randomText}}</p> -->
 
-<app-server></app-server>
+<app-server *ngFor = "let i of serverIds"></app-server>
+
+
+
+
 
