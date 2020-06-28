@@ -7,15 +7,19 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.css']
 })
-export class ServersComponent implements OnInit {
+export class ServersComponent {
 
-
-  marvelID = "";
+  toggle = false;
+  toggleArray = [];
 
   constructor() {
 
   }
 
-  ngOnInit(): void {
+  onClickBuddy(){
+    this.toggle = !this.toggle;
+    this.toggleArray.push(new Date);
   }
+
+
 }
