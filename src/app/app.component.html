@@ -1,14 +1,13 @@
 <div class="container">
+  <app-cockpit
+  (serverCreated)="onServerAdded($event)"
+  (blueprintCreated)="onBlueprintAdded($event)"></app-cockpit>
+  <hr>
   <div class="row">
     <div class="col-xs-12">
-      <h3>Hello Everyone</h3>
-      <hr>
-      <app-servers></app-servers>
-      <!-- <div app-servers></div> -->
-      <!-- <div class="app-servers"></div> -->
+      <app-server-element *ngFor = "let serverElement of serverElements"
+      [alias] = "serverElement"></app-server-element>
     </div>
   </div>
 </div>
-
-
 
