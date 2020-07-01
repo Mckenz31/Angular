@@ -5,9 +5,11 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
+      <button class="btn btn-primary" (click) = "onChange()">Click me</button>
+      <button class="btn btn-danger" (click) = "onDestroy()">Destroy me</button>
       <app-server-element *ngFor = "let serverElement of serverElements"
-      [alias] = "serverElement">
-      <p>
+      [alias] = "serverElement" [name] = "serverElement.name">
+      <p #useContentChild>
         <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
         <em *ngIf="serverElement.type === 'blueprint'" style="color: blue;">{{ serverElement.content }}</em>
       </p>

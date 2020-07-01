@@ -15,6 +15,7 @@ export class CockpitComponent implements OnInit {
   @ViewChild('newServerContent') ServerContent: ElementRef
 
 
+
   constructor() { }
 
   ngOnInit(): void {
