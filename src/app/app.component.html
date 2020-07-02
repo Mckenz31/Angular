@@ -1,14 +1,20 @@
 <div class="container">
   <div class="row">
+    <app-game-control (oddeven)="onIncrement($event)"
+    ></app-game-control>
+    <!-- <p *ngFor="let items of arraybro"></p> -->
+  </div>
+  <hr>
+  <div class="row">
     <div class="col-xs-12">
-      <h3>Hello Everyone</h3>
-      <hr>
-      <app-servers></app-servers>
-      <!-- <div app-servers></div> -->
-      <!-- <div class="app-servers"></div> -->
+      <app-odd *ngFor="let elementz of oddarray" [oddie] = "elementz"></app-odd>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-even *ngFor="let elementz of evenarray" [evie] = "elementz"></app-even>
     </div>
   </div>
 </div>
 
-
-
+<!-- (oddeven)="numeral($event)" -->
