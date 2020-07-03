@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-first-app';
+  recievedData:string = 'recipe';
+
+  checkEvent(databro){
+    this.recievedData=databro;
+    // console.log(this.recievedData);
+  }
 }
