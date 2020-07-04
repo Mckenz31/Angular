@@ -15,4 +15,8 @@ import { Component } from '@angular/core';
 
 })
 export class AppComponent {
+
+  onlyOdd = true;
+  oddNumbers=[1,3,5];
+  evenNumbers=[2,4]
 }

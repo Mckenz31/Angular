@@ -1,13 +1,35 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h3>Hello Everyone</h3>
-      <hr>
-      <app-servers></app-servers>
-      <!-- <div app-servers></div> -->
-      <!-- <div class="app-servers"></div> -->
+      <h3>Odd number or Even number</h3>
+      <button class="btn btn-success" (click)="onlyOdd = !onlyOdd">Odd/Even</button>
+      <br>
+      <ul class="list-group">
+        <div *ngIf="onlyOdd">
+          <li class="list-group-item" [ngStyle]="{backgroundColor: odd%2==0 ? 'yellow': 'pink'}"
+          [ngClass]="{odd: odd%2!==0}" *ngFor="let odd of oddNumbers">{{odd}}
+          </li>
+        </div>
+      </ul>
+      <ul class="list-group">
+        <div *ngIf="!onlyOdd">
+          <li class="list-group-item" [ngStyle]="{backgroundColor: even%2==0 ? 'yellow': 'pink'}"
+          [ngClass]="{odd: even%2!==0}" *ngFor="let even of evenNumbers">{{even}}
+          </li>
+        </div>
+      </ul>
     </div>
   </div>
+  <!-- <div class="row">
+    <div class="col-xs-7">
+      <p *ngIf="onlyOdd">This is ODD</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-7">
+      <p *ngIf="!onlyOdd">This is EVEN</p>
+    </div>
+  </div> -->
 </div>
 
 
