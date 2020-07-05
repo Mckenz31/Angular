@@ -12,4 +12,5 @@ export class BasicHighlightDirective implements OnInit {
   ngOnInit(){
     this.elementAcess.nativeElement.style.backgroundColor = 'violet';
   }
+
 }
