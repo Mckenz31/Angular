@@ -21,6 +21,28 @@
       <p appBasicHighlight>Not the best use of directive with ElementRef</p>
       <p appBetterHighlight [defaultColor]="'yellow'" [changedColor]="'purple'">The best use of directive with Renderer2</p>
     </div>
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <div *appUnless="onlyOdd">
+          <li class="list-group-item" [ngStyle]="{backgroundColor: odd%2==0 ? 'yellow': 'pink'}"
+          [ngClass]="{odd: odd%2!==0}" *ngFor="let odd of oddNumbers">{{odd}}
+          </li>
+        </div>
+      </ul>
+      <ul class="list-group">
+        <div *appUnless="!onlyOdd">
+          <li class="list-group-item" [ngStyle]="{backgroundColor: even%2==0 ? 'yellow': 'pink'}"
+          [ngClass]="{odd: even%2!==0}" *ngFor="let even of evenNumbers">{{even}}
+          </li>
+          <div [ngSwitch]="value">
+            <p *ngSwitchCase="5" >Value is 5</p>
+            <p *ngSwitchCase="10" >Value is 10</p>
+            <p *ngSwitchCase="100">Value is 100</p>
+            <p *ngSwitchDefault>Default value</p>
+          </div>
+        </div>
+      </ul>
+    </div>
   </div>
   <!-- <div class="row">
     <div class="col-xs-7">
