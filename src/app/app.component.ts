@@ -1,39 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {UserService} from './user.service';
+import {CounterService} from './counter.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  //template
-  styleUrls: ['./app.component.css'] ,
-
-  //This is styling using an inline template
-  /*styles: [`
-  h3{
-    color: pink;
-  }
-  `] */
-
+  styleUrls: ['./app.component.css'],
+  providers: [UserService, CounterService]
 })
 export class AppComponent {
 
-  oddarray= [];
-  evenarray = [];
-  numeral:any;
+//   constructor(private userSer: UserService){}
 
-  onIncrement(inputData:number){
-    if(inputData%2==1){
-      this.numeral=inputData;
-      this.oddarray.push(this.numeral);
-    }
-    else{
-      this.numeral=inputData;
-      this.evenarray.push(this.numeral);
-    }
-    // this.numeral=inputData;
-    // this.numeral=this.numeral%2;
-    // this.numeral="odd/even"
-    // this.arraybro.push(this.numeral);
-  }
+//   activeUsers: string[] = [];
+//   inactiveUsers: string[] = []
+
+//   ngOnInit(){
+//     this.activeUsers = this.userSer.activeUserz;
+//     this.inactiveUsers = this.userSer.inactiveUserz;
+//   }
+
+
+
+
+//   activeUsers = ['Max', 'Anna'];
+//   inactiveUsers = ['Chris', 'Manu'];
+
+//   onSetToInactive(id: number) {
+//     this.inactiveUsers.push(this.activeUsers[id]);
+//     this.activeUsers.splice(id, 1);
+//   }
+
+//   onSetToActive(id: number) {
+//     this.activeUsers.push(this.inactiveUsers[id]);
+//     this.inactiveUsers.splice(id, 1);
+//   }
+// }
+
 
 
 }

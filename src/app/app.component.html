@@ -1,20 +1,13 @@
 <div class="container">
   <div class="row">
-    <app-game-control (oddeven)="onIncrement($event)"
-    ></app-game-control>
-    <!-- <p *ngFor="let items of arraybro"></p> -->
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-xs-12">
-      <app-odd *ngFor="let elementz of oddarray" [oddie] = "elementz"></app-odd>
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <app-active-users></app-active-users>
+      <app-inactive-users></app-inactive-users>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <app-even *ngFor="let elementz of evenarray" [evie] = "elementz"></app-even>
-    </div>
+    <!--
+      Optimize this app by adding a UsersService which manages the active and inactive users.
+
+      Also add a CounterService which counts the number of active->inactive and inactive->active actions.
+    -->
   </div>
 </div>
-
-<!-- (oddeven)="numeral($event)" -->
