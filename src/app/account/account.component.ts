@@ -7,7 +7,7 @@ import { LoggingService } from '../logging.service';
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css'],
-  providers: [LoggingService]
+  // providers: [LoggingService]
 })
 export class AccountComponent {
   @Input() account: {name: string, status: string};
@@ -18,7 +18,7 @@ export class AccountComponent {
 
   onSetTo(status: string){
     this.accServ.onChange(this.id, status);
-    this.logServ.StatusUpdate(status);
+    // this.logServ.StatusUpdate(status);
   }
 
   // onSetTo(status: string) {
