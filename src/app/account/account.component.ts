@@ -18,6 +18,7 @@ export class AccountComponent {
 
   onSetTo(status: string){
     this.accServ.onChange(this.id, status);
+    this.accServ.statusAlert.emit(status);
     // this.logServ.StatusUpdate(status);
   }
 
