@@ -6,6 +6,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { ServersService } from './servers/servers.service';
 import {AuthService} from './auth.service';
 import {AuthGuard} from './auth-guard.service';
+import {CanDeactivateGuard} from '../app/servers/edit-server/can-deactivate-guard.service'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -33,7 +34,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [ServersService, AuthService, AuthGuard],
+  providers: [ServersService, AuthService, AuthGuard, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
