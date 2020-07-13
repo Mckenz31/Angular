@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ServersService } from '../servers.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-edit-server',
@@ -12,8 +12,7 @@ export class EditServerComponent implements OnInit {
   server: {id: number, name: string, status: string};
   serverName = '';
   serverStatus = '';
-  random1: any;
-  random2: any;
+  allowEdit = false;
 
   constructor(private serversService: ServersService, private activRoute: ActivatedRoute) { }
 
@@ -24,10 +23,11 @@ export class EditServerComponent implements OnInit {
     //To get the queryParams and fragment which is on the URL
     console.log(this.activRoute.snapshot.queryParams);
     console.log(this.activRoute.snapshot.fragment);
-    this.random1=this.activRoute.queryParams;
-    console.log(this.random1.value);
-    this.random2=this.activRoute.fragment;
-    console.log(this.random2.value);
+    this.activRoute.queryParams.subscribe(
+      (queryParams:Params) => {
+        this.allowEdit = queryParams['queryParamstry'] === '1' ? true: false;
+      }
+    )
   }
 
   onUpdateServer() {
