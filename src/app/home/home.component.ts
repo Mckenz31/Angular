@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   onClick(){
     //complicated code
-    this.route.navigate(['/servers']);
+    this.route.navigate(['/servers','5','edit'], {queryParams: {homeToservers: 77}, fragment: 'whocares'});
   }
 
 }
