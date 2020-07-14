@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { RecipeService } from '../recipe.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,7 +15,7 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
 
 
-  constructor(private recipServ: RecipeService, private activServ: ActivatedRoute) { }
+  constructor(private recipServ: RecipeService, private activServ: ActivatedRoute, private router: Router) { }
 
   ngOnInit(){
     this.activServ.params.subscribe(
@@ -28,6 +28,11 @@ export class RecipeDetailComponent implements OnInit {
 
   onToShop(){
     this.recipServ.sendToShop(this.recipe.ingredients);
+  }
+
+  routey(){
+    this.router.navigate(['edit'], {relativeTo: this.activServ});
+    // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.activServ});
   }
 
 }
