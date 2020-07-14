@@ -23,6 +23,7 @@ export class ShoppingListService{
   onShop(ingridient: Ingredient[]){
     // this.ingredients = ingridient;
     this.ingredients.push(...ingridient);
+    this.dataChanged.emit(this.ingredients.slice());
   }
 
 
