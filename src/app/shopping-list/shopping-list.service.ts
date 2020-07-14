@@ -20,6 +20,10 @@ export class ShoppingListService{
     this.dataChanged.emit(this.ingredients.slice())
   }
 
+  onShop(ingridient: Ingredient[]){
+    // this.ingredients = ingridient;
+    this.ingredients.push(...ingridient);
+  }
 
 
 }
