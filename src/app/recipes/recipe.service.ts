@@ -33,6 +33,10 @@ export class RecipeService{
     return this.recipes.slice()
   }
 
+  accessById(index:number){
+    return this.recipes[index];
+  }
+
   sendToShop(ingridient: Ingredient[]){
     this.shopServ.onShop(ingridient)
   }

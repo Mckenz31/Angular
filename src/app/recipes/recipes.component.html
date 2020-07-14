@@ -3,9 +3,6 @@
     <app-recipe-list></app-recipe-list>
   </div>
   <div class = "col-md-7">
-    <app-recipe-detail *ngIf="recipeData; else: ifnot" [recipe] = "recipeData" ></app-recipe-detail>
-      <ng-template #ifnot>
-        <p>Select an Image</p>
-      </ng-template>
+    <router-outlet></router-outlet>
   </div>
 </div>
