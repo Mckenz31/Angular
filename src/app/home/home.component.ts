@@ -20,13 +20,24 @@ export class HomeComponent implements OnInit, OnDestroy {
       let count = 0;
       setInterval(()=> {
         observer.next(count);
+        if(count===5){
+          observer.complete();
+        }
+        if(count>3){
+          observer.error(new Error ('We got an error'));
+        }
         count++
       }, 1000)
     } )
 
     this.sub = Observ.subscribe(dataz => {
       console.log(dataz);
-    })
+    }, error => {
+      console.log(error)
+    }, () => {
+      console.log('complete')
+    }
+    )
   }
 
   ngOnDestroy(){
