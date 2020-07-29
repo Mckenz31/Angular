@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { interval, Subscription, Observable } from 'rxjs';
+import { interval, Subscription, Observable, pipe } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       }, 1000)
     } )
 
-    this.sub = Observ.subscribe(dataz => {
+    Observ.pipe(filter((dataz:number) => {
+      return dataz>0
+    }),map((dataz:number) => {
+      return 'Round' + (dataz+1);
+    })).subscribe(dataz => {
       console.log(dataz);
     }, error => {
       console.log(error)
@@ -39,6 +44,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
     )
   }
+
+
 
   ngOnDestroy(){
     this.sub.unsubscribe();
