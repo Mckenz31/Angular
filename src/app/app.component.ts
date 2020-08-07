@@ -9,6 +9,8 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
 
   @ViewChild('f') duh:NgForm
+  defopt = 'pet';
+  textdetail = '';
 
   suggestUserName() {
     const suggestedName = 'Superuser';
