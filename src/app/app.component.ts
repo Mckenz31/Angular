@@ -12,6 +12,12 @@ export class AppComponent {
   defopt = 'pet';
   textdetail = '';
   genders: any = ['male', 'female'];
+  condition = false;
+  userData:any = {userName: '',
+    emailID: '',
+    confidential: '',
+    inputData: '',
+    sex: '',}
 
   suggestUserName() {
 
@@ -32,9 +38,14 @@ export class AppComponent {
     })
   }
 
-
-
   onSubmit(){
     console.log(this.duh);
+    this.userData.userName = this.duh.value.userData.user,
+    this.userData.emailID = this.duh.value.userData.mail,
+    this.userData.confidential = this.duh.value.secret,
+    this.userData.inputData = this.duh.value.textContent,
+    this.userData.sex = this.duh.value.gender,
+    this.condition = true;
+    this.duh.reset();
   }
 }
