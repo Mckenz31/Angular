@@ -11,6 +11,7 @@ export class AppComponent {
   @ViewChild('f') duh:NgForm
   defopt = 'pet';
   textdetail = '';
+  genders: any = ['male', 'female'];
 
   suggestUserName() {
     const suggestedName = 'Superuser';
