@@ -14,8 +14,24 @@ export class AppComponent {
   genders: any = ['male', 'female'];
 
   suggestUserName() {
-    const suggestedName = 'Superuser';
+
+    // this.duh.setValue({
+    //   userData: {
+    //     user: 'Superuser',
+    //     mail: 'rosita@hotmail.com'
+    //   },
+    //   secret: 'teacher',
+    //   textContent: 'Rosita',
+    //   gender: 'female'
+    // });
+
+    this.duh.form.patchValue({
+      userData: {
+        user: 'PatchUser'
+      }
+    })
   }
+
 
 
   onSubmit(){
