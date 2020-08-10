@@ -12,8 +12,10 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.reactivFrm = new FormGroup({
-      'username': new FormControl(null, Validators.required),
+      'userData': new FormGroup({
+        'username': new FormControl(null, Validators.required),
       'mail': new FormControl(null, [Validators.required , Validators.email]),
+      }),
       'radio': new FormControl('male', Validators.required)
     });
   }
