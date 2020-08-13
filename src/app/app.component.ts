@@ -32,6 +32,14 @@ export class AppComponent {
       started: new Date(15, 1, 2017)
     }
   ];
+  addNew(){
+    this.servers.push({
+      instanceType: 'medium',
+      name: 'Random Server',
+      status: 'stable',
+      started: new Date(15, 1, 2017)
+    })
+  }
   getStatusClasses(server: {instanceType: string, name: string, status: string, started: Date}) {
     return {
       'list-group-item-success': server.status === 'stable',
