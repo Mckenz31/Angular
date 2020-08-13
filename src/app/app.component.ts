@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  forasync = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve ('status');
+    } ,2000)
+  });
   servers = [
     {
       instanceType: 'medium',
