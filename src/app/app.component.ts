@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -9,12 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   loadedPosts = [];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {}
 
   onCreatePost(postData: { title: string; content: string }) {
-    // Send Http request
+    this.http.post('https://learn-angular-a9a14.firebaseio.com/posts.json', postData).subscribe(response=> {
+      console.log(response);
+    })
 
   }
 
