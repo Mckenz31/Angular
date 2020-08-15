@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+import { Post } from './post.model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,8 +18,8 @@ export class AppComponent implements OnInit {
     this.fetchPosts();
   }
 
-  onCreatePost(postData: { title: string; content: string }) {
-    this.http.post('https://learn-angular-a9a14.firebaseio.com/posts.json', postData).subscribe(response=> {
+  onCreatePost(postData: Post) {
+    this.http.post<{name: string}>('https://learn-angular-a9a14.firebaseio.com/posts.json', postData).subscribe(response=> {
       console.log(response);
     })
 
@@ -33,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   private fetchPosts(){
-    this.http.get('https://learn-angular-a9a14.firebaseio.com/posts.json').pipe(map(responz => {
+    this.http.get<{[key:string]: Post}>('https://learn-angular-a9a14.firebaseio.com/posts.json').pipe(map(responz => {
       const array=[];
       for (const key in responz){
         if(responz.hasOwnProperty){
