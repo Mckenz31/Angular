@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { PostService } from './posts.service';
 
 import { Post } from './post.model';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-root',
@@ -13,17 +15,17 @@ export class AppComponent implements OnInit {
   loadedPosts = [];
   isFetching = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private pstServ: PostService) {}
 
   ngOnInit() {
     this.fetchPosts();
   }
 
   onCreatePost(postData: Post) {
-    this.http.post<{name: string}>('https://learn-angular-a9a14.firebaseio.com/posts.json', postData).subscribe(response=> {
-      console.log(response);
-    })
-
+    // this.http.post<{name: string}>('https://learn-angular-a9a14.firebaseio.com/posts.json', postData).subscribe(response=> {
+    //   console.log(response);
+    // })
+    this.pstServ.createAndStorePosts(postData.title, postData.content);
   }
 
   onFetchPosts() {
@@ -37,19 +39,10 @@ export class AppComponent implements OnInit {
 
   private fetchPosts(){
     this.isFetching = true;
-    this.http.get<{[key:string]: Post}>('https://learn-angular-a9a14.firebaseio.com/posts.json').pipe(map(responz => {
-      const array=[];
-      for (const key in responz){
-        if(responz.hasOwnProperty){
-          array.push({...responz[key], id:key});
-        }
-      }
-      return array;
-    }))
-    .subscribe(responz=> {
+    this.pstServ.postData().subscribe(responzz => {
       // console.log(responz);
       this.isFetching = false;
-      this.loadedPosts = responz;
-    })
+      this.loadedPosts = responzz;
+    });
   }
 }
