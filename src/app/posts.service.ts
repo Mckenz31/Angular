@@ -28,4 +28,8 @@ export class PostService{
       return array;
     }))
   }
+
+  deleteData(){
+    return this.http.delete('https://learn-angular-a9a14.firebaseio.com/posts.json');
+  }
 }
