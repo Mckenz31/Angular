@@ -14,11 +14,13 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 export class AppComponent implements OnInit {
   loadedPosts = [];
   isFetching = false;
+  errormsg = null;
 
   constructor(private http: HttpClient, private pstServ: PostService) {}
 
   ngOnInit() {
     this.fetchPosts();
+
   }
 
   onCreatePost(postData: Post) {
@@ -46,6 +48,10 @@ export class AppComponent implements OnInit {
       // console.log(responz);
       this.isFetching = false;
       this.loadedPosts = responzz;
-    });
+      }, error => {
+        this.errormsg = error.message;
+        console.log(error);
+      }
+    );
   }
 }
