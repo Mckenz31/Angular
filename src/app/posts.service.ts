@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpEventType} from '@angular/common/http';
 import { Post } from './post.model';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
 @Injectable({
@@ -14,7 +14,18 @@ export class PostService{
 
   createAndStorePosts(title: string, content:string){
     const postData: Post = {title: title, content:content}
-    this.http.post<{name: string}>('https://learn-angular-a9a14.firebaseio.com/posts.json', postData).subscribe(response=> {
+    let searchParams = new HttpParams;
+    searchParams = searchParams.append('print', 'pretty');
+    searchParams = searchParams.append('something', 'random');
+    this.http.post<{name: string}>('https://learn-angular-a9a14.firebaseio.com/posts.json', postData,
+    {
+      headers: new HttpHeaders({
+        'Custom-Header': 'Hello'
+      }),
+      // params: new HttpParams().set('print', 'pretty')
+      params: searchParams,
+      observe: 'response'
+    }).subscribe(response=> {
       console.log(response);
     }, error => {
       this.errorsub.next(error.message);
@@ -38,6 +49,20 @@ export class PostService{
   }
 
   deleteData(){
-    return this.http.delete('https://learn-angular-a9a14.firebaseio.com/posts.json');
+    return this.http.delete('https://learn-angular-a9a14.firebaseio.com/posts.json',
+    {
+      observe: 'events',
+      // responseType: 'json' -> This is default cause we are using firebase
+    }).pipe(tap(event=> {
+      //tap - this wont interupt the return subscription
+      console.log(event);
+      //event would be of type 0-5 i guess? this can be seen when we type HttpEventType. -> what comes after when we type it shows the type
+      if(event.type === HttpEventType.Sent){
+        //...
+      }
+      if(event.type === HttpEventType.Response){
+        console.log(event.body);
+      }
+    }))
   }
 }
