@@ -62,6 +62,7 @@
       <div class="alert alert-danger" role="alert" *ngIf="errormsg">
         <h6 style="font-weight: bold;">Error Message</h6>
         <p>{{errormsg}}</p>
+        <button class="btn btn-danger" (click)="errorClick()">Understood</button>
       </div>
     </div>
   </div>

@@ -28,15 +28,15 @@ export class AppComponent implements OnInit {
 
   }
 
+  errorClick(){
+    this.errormsg = null;
+  }
+
   onCreatePost(postData: Post) {
-    // this.http.post<{name: string}>('https://learn-angular-a9a14.firebaseio.com/posts.json', postData).subscribe(response=> {
-    //   console.log(response);
-    // })
     this.pstServ.createAndStorePosts(postData.title, postData.content);
   }
 
   onFetchPosts() {
-    // Send Http request
     this.fetchPosts();
   }
 
@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
       this.isFetching = false;
       this.loadedPosts = responzz;
       }, error => {
+        this.isFetching = false;
         this.errormsg = error.message;
         console.log(error);
       }
