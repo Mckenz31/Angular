@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { PostService } from './posts.service';
+import { Subscription } from 'rxjs';
 
 import { Post } from './post.model';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +15,15 @@ export class AppComponent implements OnInit {
   loadedPosts = [];
   isFetching = false;
   errormsg = null;
+  private sub: Subscription;
 
   constructor(private http: HttpClient, private pstServ: PostService) {}
 
   ngOnInit() {
+    this.sub = this.pstServ.errorsub.subscribe(error => {
+      console.log(error);
+      this.errormsg = error;
+    })
     this.fetchPosts();
 
   }
@@ -53,5 +58,9 @@ export class AppComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
 }
