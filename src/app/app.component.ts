@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,15 +16,43 @@ export class AppComponent implements OnInit{
     this.reactivFrm = new FormGroup({
       'userData': new FormGroup({
         'username': new FormControl(null, [Validators.required, this.forbiddenVaulidator.bind(this)]),
-      'mail': new FormControl(null, [Validators.required , Validators.email]),
+      'mail': new FormControl(null, [Validators.required , Validators.email], this.forbiddenEmailValidator),
       }),
       'radio': new FormControl('male', Validators.required),
       'hobbies': new FormArray([])
     });
+
+    this.reactivFrm.setValue({
+      'userData': {
+        'username': 'Mck',
+      'mail': 'mck@gmail.com'
+      },
+      'radio': 'female',
+      'hobbies': []
+    });
+
+    this.reactivFrm.patchValue({
+      'userData': {
+        'username': 'Mckie'
+      }
+    });
+
+    this.reactivFrm.valueChanges.subscribe(
+      (value) => {
+        console.log(value);
+      }
+    );
+
+    this.reactivFrm.statusChanges.subscribe(
+      (status) => {
+        console.log(status);
+      }
+    );
   }
 
   onSubmit(){
     console.log(this.reactivFrm);
+    this.reactivFrm.reset();
   }
 
   onAddHobby(){
@@ -41,6 +70,19 @@ export class AppComponent implements OnInit{
       return {'id': true};
     }
     return null;
+  }
+
+  forbiddenEmailValidator(control : FormControl): Promise<any> | Observable<any> {
+    const prmise = new Promise<any>((resolve, reject) => {
+      setTimeout(() => {
+        if(control.value === 'test@gmail.com'){
+          resolve({'emailIsForbidden': true});
+        } else{
+          resolve(null);
+        }
+      },1500)
+    });
+    return prmise;
   }
 
 }
