@@ -10,9 +10,14 @@
               id="username"
               formControlName= "username"
               class="form-control">
-              <p *ngIf="reactivFrm.get('userData.username').invalid && reactivFrm.get('userData.username').touched">
-                Please enter a username
-              </p>
+              <span class="alert-block" *ngIf="reactivFrm.get('userData.username').invalid && reactivFrm.get('userData.username').touched">
+                <span *ngIf="reactivFrm.get('userData.username').errors['id']">
+                  The entered username exists
+                </span>
+                <span *ngIf="reactivFrm.get('userData.username').errors['required']">
+                  Enter a username
+                </span>
+              </span>
           </div>
           <div class="form-group">
             <label for="email">email</label>
