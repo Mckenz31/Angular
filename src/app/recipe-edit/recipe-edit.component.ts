@@ -50,19 +50,19 @@ export class RecipeEditComponent implements OnInit {
       }
     }
     this.reactivFrm = new FormGroup({
-      'recipe_name': new FormControl(recipeName, Validators.required),
-      'img_path': new FormControl(imagePath, Validators.required),
+      'name': new FormControl(recipeName, Validators.required),
+      'imagePath': new FormControl(imagePath, Validators.required),
       'description': new FormControl(descriptz, Validators.required),
-      'formIng': ingredientz
+      'ingredients': ingredientz
     });
   }
 
   get controls(){ //A getter! A 'get' accessor must return a value
-    return (<FormArray>this.reactivFrm.get('formIng')).controls;
+    return (<FormArray>this.reactivFrm.get('ingredients')).controls;
   }
 
   addIngredient(){
-    (<FormArray>this.reactivFrm.get('formIng')).push(
+    (<FormArray>this.reactivFrm.get('ingredients')).push(
       new FormGroup({
         'name': new FormControl(null, Validators.required),
         'amount': new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
@@ -72,7 +72,13 @@ export class RecipeEditComponent implements OnInit {
 
 
   onSubmit(){
-    console.log(this.reactivFrm.value);
+    // console.log(this.reactivFrm.value);
+    if(this.editMode){
+      this.resipeServ.editRecipe(this.id, this.reactivFrm.value);
+    }
+    else{
+      this.resipeServ.newRecipe(this.reactivFrm.value);
+    }
   }
 
 }

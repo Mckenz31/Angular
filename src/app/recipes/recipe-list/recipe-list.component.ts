@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,6 +16,11 @@ export class RecipeListComponent implements OnInit {
     private activRoute: ActivatedRoute) { }
 
   ngOnInit(){
+    this.recipServ.sendRecipe.subscribe(
+      (recipe: Recipe[]) => {
+        this.recipes = recipe;
+      }
+    )
     this.recipes = this.recipServ.getRecipe();
   }
   newRecipe(){
