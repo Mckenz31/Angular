@@ -33,6 +33,10 @@ export class RecipeService{
     return this.recipes.slice()
   }
 
+  getRecipz(index:number){
+    return this.recipes[index];
+  }
+
   accessById(index:number){
     return this.recipes[index];
   }
