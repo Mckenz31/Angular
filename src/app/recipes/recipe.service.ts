@@ -58,7 +58,7 @@ export class RecipeService{
   }
 
   sendToShop(ingridient: Ingredient[]){
-    this.shopServ.onShop(ingridient)
+    this.shopServ.onShop(ingridient);
   }
 
 
