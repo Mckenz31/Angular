@@ -1,8 +1,11 @@
 import {Recipe} from './recipe.model';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class RecipeService{
@@ -28,7 +31,7 @@ export class RecipeService{
     ])
   ];
 
-  constructor(private shopServ: ShoppingListService){}
+  constructor(private shopServ: ShoppingListService,private http: HttpClient){}
 
   getRecipe(){
     return this.recipes.slice()
@@ -61,5 +64,20 @@ export class RecipeService{
     this.shopServ.onShop(ingridient);
   }
 
+  putData(){
+    return this.http.put('https://http-cp19.firebaseio.com/recipes.json', this.recipes).subscribe();
+  }
+
+  fetchData(){
+    return this.http.get<Recipe[]>('https://http-cp19.firebaseio.com/recipes.json').pipe(map(response => {
+      return response.map(recipe => {
+        return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []}
+      })
+    })).subscribe(responze => {
+      this.recipes = responze;
+      this.recipeChanged.next(this.recipes.slice());
+    });
+
+  }
 
 }
