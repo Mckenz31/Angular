@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { AuthComponent} from './auth/auth.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
@@ -24,6 +25,7 @@ import { RecipeService } from './recipes/recipe.service';
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
     RecipesComponent,
     RecipeDetailComponent,
     RecipeListComponent,
