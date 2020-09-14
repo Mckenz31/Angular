@@ -1,13 +1,19 @@
 <div class="row">
   <div class="col-xs-12 col-md-8 col-md-offset-2">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      <p>{{errorMessage}}</p>
+    </div>
+    <div *ngIf="isLoading" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="!isLoading" >
       <div class="form-group">
         <label for="email">Email ID</label>
-        <input type="email" id="email" name="mailID" required email class="form-control" ngModel>
+        <input type="email" id="email" name="email" required email class="form-control" ngModel>
       </div>
       <div class="form-group">
-        <label for="pass">Password</label>
-        <input type="password" id="pass" name="password" required class="form-control" ngModel minlength="6">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required class="form-control" ngModel minlength="6">
       </div>
       <div>
         <button class="btn btn-primary" type="submit" [disabled]="f.invalid">
