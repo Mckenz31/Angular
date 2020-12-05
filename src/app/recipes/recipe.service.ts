@@ -1,6 +1,7 @@
 import {Recipe} from './recipe.model';
 import { Injectable } from '@angular/core';
 import { map, tap, take, exhaustMap } from 'rxjs/operators';
+import { env} from './../../environments/env';
 
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
@@ -12,6 +13,9 @@ import { AuthService } from '../auth/auth.service';
 export class RecipeService{
 
   recipeChanged = new Subject<Recipe[]>();
+
+  private fireserver:any = env.dataAPIUrl;
+  private path:any = '/recipes.json';
 
   private recipes: Recipe[] = [
     // new Recipe('Salad',
@@ -66,12 +70,12 @@ export class RecipeService{
   }
 
   putData(){
-    return this.http.put('https://http-cp19.firebaseio.com/recipes.json', this.recipes).subscribe();
+    return this.http.put(this.fireserver + this.path, this.recipes).subscribe();
   }
 
   fetchData(){
     return this.authServ.user.pipe(take(1),exhaustMap(user => {
-      return this.http.get<Recipe[]>('https://http-cp19.firebaseio.com/recipes.json',{
+      return this.http.get<Recipe[]>(this.fireserver + this.path,{
         params: new HttpParams().set('auth', user.token)
       })
     }),map(response => {
